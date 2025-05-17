@@ -1,0 +1,91 @@
+---
+import Container from "@/components/commons/container.astro";
+import { Button } from "@/components/starwind/button";
+import { Mail, Phone, MapPin } from "@lucide/astro";
+import { getCollection } from "astro:content";
+const allBlogPosts = (await getCollection("blog"))
+   .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+   .slice(0, 5);
+---
+
+<footer class='w-full py-10 mt-10 glass-footer'>
+   <Container>
+      <div
+         class='flex flex-col md:flex-row justify-between gap-10 text-sm text-gray-200'
+      >
+         <div class='flex flex-col justify-between'>
+            <h2 class='text-lg font-semibold mb-2'>Dr. Matías Tagliero</h2>
+            <div class='flex flex-col gap-1'>
+               <Button
+                  variant='link'
+                  class='w-fit px-0 h-fit py-0'
+                  href='mailto:contacto@tagliero.com'
+                  size='sm'
+               >
+                  <Mail size='14' />
+                  contacto@tagliero.com
+               </Button>
+               <Button
+                  variant='link'
+                  class='w-fit px-0 h-fit py-0'
+                  href='mailto:contacto@tagliero.com'
+                  size='sm'
+               >
+                  <Phone size='14' />
+                  +54 9 11 1234-5678
+               </Button>
+               <Button
+                  variant='link'
+                  class='w-fit px-0 h-fit py-0'
+                  href='mailto:contacto@tagliero.com'
+                  size='sm'
+               >
+                  <MapPin size='14' />
+                  Av. Justicia 123, Buenos Aires, Argentina
+               </Button>
+            </div>
+         </div>
+         <div class='flex gap-30'>
+            <div>
+               <h2 class='text-lg font-semibold mb-2'>Navegación</h2>
+               <div class='flex flex-col gap-2'>
+                  <a href='/'>Inicio</a>
+                  <a href='#sobre-mi'>Sobre Mí</a>
+                  <a href='/blog'>Artículos</a>
+                  <a href='#faq'>Preguntas Frecuentes</a>
+                  <a href='#contacto'>Contacto</a>
+               </div>
+            </div>
+            <div>
+               <h2 class='text-lg font-semibold mb-2'>Últimos artículos</h2>
+               <div class='flex flex-col gap-2'>
+                  {
+                     allBlogPosts.map((post) => (
+                        <a
+                           href={`/blog/${post.slug}`}
+                           class='inline-block max-w-[400px] truncate'
+                        >
+                           {post.data.title}
+                        </a>
+                     ))
+                  }
+               </div>
+            </div>
+         </div>
+      </div>
+   </Container>
+</footer>
+
+<style>
+   .glass-footer {
+      background: linear-gradient(
+         135deg,
+         rgba(255, 255, 255, 0),
+         rgba(255, 255, 255, 0.08)
+      );
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.3);
+   }
+</style>

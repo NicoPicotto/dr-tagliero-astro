@@ -1,0 +1,34 @@
+---
+import Container from "@/components/commons/container.astro";
+import { Button } from "@/components/starwind/button";
+import { getCollection } from "astro:content";
+import { PenLine } from '@lucide/astro';
+import ArticleCard from "@/components/articles/article-card.astro";
+const allBlogPosts = (await getCollection("blog"))
+   .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+   .slice(0, 3);
+---
+
+<section class='py-10'>
+   <Container>
+      <div class='flex items-center justify-between mb-10'>
+         <h2 class='text-3xl font-bold border-l-4 border-primary pl-4'>
+            Artículos recientes
+         </h2>
+         <Button variant='outline'><PenLine />Ver todos los artículos</Button>
+      </div>
+
+      <div class='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10'>
+         {
+            allBlogPosts.map((post) => (
+               <ArticleCard
+                  title={post.data.title}
+                  description={post.data.description}
+                  image={post.data.image}
+                  href={`/blog/${post.slug}`}
+               />
+            ))
+         }
+      </div>
+   </Container>
+</section>

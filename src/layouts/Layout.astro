@@ -1,6 +1,7 @@
 ---
 // style import
 import Navbar from "@/components/commons/navbar.astro";
+import Footer from "@/components/commons/footer.astro";
 import "@/styles/starwind.css";
 ---
 
@@ -9,14 +10,22 @@ import "@/styles/starwind.css";
    <head>
       <meta charset='UTF-8' />
       <meta name='viewport' content='width=device-width' />
+      <meta
+         name='description'
+         content='Matías Tagliero – Abogado MP 12345. Especializado en derecho civil, penal, laboral y familiar. Ofrecemos asesoría legal personalizada, elaboración de contratos y representación judicial en Argentina.'
+      />
+      <meta
+         name='keywords'
+         content='abogado, Matías Tagliero, MP 12345, derecho civil, derecho penal, derecho laboral, derecho familiar, asesoría legal, representación judicial, consultoría jurídica, contratos, litigios, abogado en Argentina'
+      />
       <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
       <meta name='generator' content={Astro.generator} />
-      <title>Astro Basics</title>
+      <title>Abog. Matías Tagliero - MP 12345</title>
    </head>
    <body>
       <Navbar />
       <slot />
-      <script src='https://unpkg.com/alpinejs' defer></script>
+      <Footer />
    </body>
 </html>
 
@@ -24,7 +33,5 @@ import "@/styles/starwind.css";
    html,
    body {
       margin: 0;
-      width: 100%;
-      height: 100%;
    }
 </style>
