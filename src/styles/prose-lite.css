@@ -1,0 +1,68 @@
+/* src/styles/prose-lite.css */
+
+/* src/styles/prose-lite.css */
+
+.prose-lite h1 {
+   font-size: 1.875rem; /* Tailwind text-3xl */
+   font-weight: 700; /* Tailwind font-bold */
+   margin-top: 1.5rem; /* Tailwind mt-6 */
+   margin-bottom: 1rem; /* Tailwind mb-4 */
+}
+
+.prose-lite h2 {
+   font-size: 1.5rem; /* Tailwind text-2xl */
+   font-weight: 600; /* Tailwind font-semibold */
+   margin-top: 1.5rem;
+   margin-bottom: 1rem;
+}
+
+.prose-lite h3 {
+   font-size: 1.25rem; /* Tailwind text-xl */
+   font-weight: 500; /* Tailwind font-medium */
+   margin-top: 1rem;
+   margin-bottom: 0.5rem;
+}
+
+.prose-lite p {
+   margin-bottom: 1rem;
+   line-height: 1.625; /* Tailwind leading-relaxed */
+   /* Tailwind text-gray-800 */
+}
+
+.prose-lite ul {
+   list-style-type: disc;
+   padding-left: 1.5rem;
+   margin-bottom: 1rem;
+}
+
+.prose-lite ol {
+   list-style-type: decimal;
+   padding-left: 1.5rem;
+   margin-bottom: 1rem;
+}
+
+.prose-lite li {
+   margin-bottom: 0.25rem;
+}
+
+.prose-lite a {
+   color: #2563eb; /* Tailwind text-blue-600 */
+   text-decoration: underline;
+}
+
+.prose-lite a:hover {
+   color: #1e40af; /* Tailwind hover:text-blue-800 */
+}
+
+.prose-lite img {
+   margin: 1rem 0;
+   border-radius: 0.5rem;
+}
+
+.prose-lite blockquote {
+   border-left: 4px solid #d1d5db; /* Tailwind border-gray-300 */
+   padding-left: 1rem;
+   font-style: italic;
+   color: #4b5563; /* Tailwind text-gray-600 */
+   margin: 1rem 0;
+}
