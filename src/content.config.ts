@@ -4,14 +4,10 @@ import { z, defineCollection } from "astro:content";
 const blog = defineCollection({
    schema: z.object({
       title: z.string(),
-      pubDate: z.date(),
       description: z.string(),
       category: z.string(),
-      image: z.object({
-         url: z.string(),
-         alt: z.string(),
-      }),
-      tags: z.array(z.string()),
+      posted: z.date(),
+      imgSrc: z.string(), // equivale a `imgSrc` en Tina
    }),
 });
 // Export a single `collections` object to register your collection(s)

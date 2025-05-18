@@ -2,10 +2,10 @@
 import Container from "@/components/commons/container.astro";
 import { Button } from "@/components/starwind/button";
 import { getCollection } from "astro:content";
-import { PenLine } from '@lucide/astro';
+import { PenLine } from "@lucide/astro";
 import ArticleCard from "@/components/articles/article-card.astro";
 const allBlogPosts = (await getCollection("blog"))
-   .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+   .sort((a, b) => b.data.posted.getTime() - a.data.posted.getTime())
    .slice(0, 3);
 ---
 
@@ -24,8 +24,9 @@ const allBlogPosts = (await getCollection("blog"))
                <ArticleCard
                   title={post.data.title}
                   description={post.data.description}
-                  image={post.data.image}
-                  href={`/blog/${post.slug}`}
+                  imgSrc={post.data.imgSrc}
+                  category={post.data.category}
+                  href={`/posts/${post.slug}`}
                />
             ))
          }
