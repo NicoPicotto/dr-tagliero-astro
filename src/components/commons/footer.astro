@@ -4,7 +4,7 @@ import { Button } from "@/components/starwind/button";
 import { Mail, Phone, MapPin } from "@lucide/astro";
 import { getCollection } from "astro:content";
 const allBlogPosts = (await getCollection("blog"))
-   .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+   .sort((a, b) => b.data.posted.getTime() - a.data.posted.getTime())
    .slice(0, 5);
 ---
 
