@@ -2,10 +2,7 @@
 title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
 description: >-
   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin aliquam tellus
-  et massa accumsan, sed tincidunt lacus sagittis. Nullam id efficitur libero.
-  Etiam commodo, tortor ullamcorper iaculis pretium, tortor tellus efficitur
-  quam, id dictum odio odio a libero. Phasellus tortor augue, pretium a massa
-  iaculis, sollicitudin porttitor lectus. 
+  et massa accumsan, sed tincidunt lacus sagittis.
 category: Civil
 posted: 2025-05-24T03:00:00.000Z
 imgSrc: /5-remote-interview-tips-to-help-you-get-hired-from-anywhere.png
