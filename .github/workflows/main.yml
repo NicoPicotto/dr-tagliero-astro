@@ -1,4 +1,4 @@
-name: Deploy to Hostinger (Pre-built)
+name: Deploy to Hostinger (Astro + pnpm)
 
 on:
   push:
@@ -12,6 +12,20 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: Install pnpm
+        run: npm install -g pnpm
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build project
+        run: pnpm run build
+
       - name: Deploy to Hostinger
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
@@ -19,5 +33,5 @@ jobs:
           username: ${{ secrets.HOSTINGER_USERNAME }}
           password: ${{ secrets.HOSTINGER_PASSWORD }}
           port: 21
-          local-dir: ./build/
+          local-dir: ./dist/
           server-dir: ${{ secrets.HOSTINGER_DEPLOY_PATH }}
