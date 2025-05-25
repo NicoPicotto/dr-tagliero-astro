@@ -1,6 +1,8 @@
 ---
 import Container from "@/components/commons/container.astro";
 import { Button } from "@/components/starwind/button";
+import { Image } from "astro:assets";
+import imgSrc from "@/assets/placeholder-hero.webp";
 ---
 
 <section class='py-10'>
@@ -21,8 +23,8 @@ import { Button } from "@/components/starwind/button";
             </div>
          </div>
          <div class='col-span-1 h-[40rem] overflow-hidden'>
-            <img
-               src='/src/assets/placeholder-hero.webp'
+            <Image
+               src={imgSrc}
                alt='imagen hero'
                class='h-full w-full object-top object-cover'
             />
