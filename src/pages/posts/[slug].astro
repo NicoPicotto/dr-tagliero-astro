@@ -2,8 +2,15 @@
 import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 import Container from "@/components/commons/container.astro";
-import Divider from "@/components/commons/divider.astro";
+import {
+   Breadcrumb,
+   BreadcrumbItem,
+   BreadcrumbLink,
+   BreadcrumbList,
+   BreadcrumbSeparator,
+} from "@/components/starwind/breadcrumb";
 import "@/styles/prose-lite.css";
+import ArticleCard from "@/components/articles/article-card.astro";
 
 export async function getStaticPaths() {
    const posts = await getCollection("blog");
@@ -14,13 +21,34 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props;
+const allBlogPosts = (await getCollection("blog"))
+   .filter(
+      (p) => p.data.category === post.data.category && p.slug !== post.slug
+   )
+   .sort((a, b) => b.data.posted.getTime() - a.data.posted.getTime())
+   .slice(0, 3);
 const { Content } = await post.render();
 ---
 
 <Layout>
    <Container>
       <article class='my-10'>
-         <div class='flex flex-col gap-6 justify-centermax-w-lg'>
+         <Breadcrumb>
+            <BreadcrumbList>
+               <BreadcrumbItem>
+                  <BreadcrumbLink href='/articulos'>Artículos</BreadcrumbLink>
+               </BreadcrumbItem>
+               <BreadcrumbSeparator />
+               <BreadcrumbItem>
+                  <BreadcrumbLink
+                     href={`/categorias/${encodeURIComponent(post.data.category)}`}
+                  >
+                     {post.data.category}
+                  </BreadcrumbLink>
+               </BreadcrumbItem>
+            </BreadcrumbList>
+         </Breadcrumb>
+         <div class='flex flex-col gap-6 justify-centermax-w-lg my-6'>
             <h1 class='text-4xl font-bold'>{post.data.title}</h1>
             <p>{post.data.description}</p>
             <div class='rounded-xl overflow-hidden'>
@@ -31,11 +59,39 @@ const { Content } = await post.render();
                />
             </div>
          </div>
-         <div class='prose-lite'><Content /></div>
+         <div class='relative grid grid-cols-9 gap-10'>
+            <div class='col-span-6 prose-lite'><Content /></div>
+            {
+               allBlogPosts.length > 0 && (
+                  <div class='col-span-3 flex flex-col gap-4 h-fit sticky top-[7rem]'>
+                     <h3 class='text-xl font-bold'>Artículos relacionados</h3>
+                     <div class='w-full h-px mb-2 bg-[repeating-linear-gradient(to_right,#d82323_0_4px,transparent_4px,transparent_12px)]' />
+                     {allBlogPosts.map((post) => (
+                        <ArticleCard
+                           title={post.data.title}
+                           description={post.data.description}
+                           imgSrc={post.data.imgSrc}
+                           category={post.data.category}
+                           href={`/posts/${post.slug}`}
+                        />
+                     ))}
+                  </div>
+               )
+            }
+         </div>
       </article>
    </Container>
-   <Divider />
+   <!-- <Divider />
    <Container>
-      <h3 class='text-xl font-bold'>Compartí este artículo</h3>
-   </Container>
+      <Tooltip>
+         <TooltipTrigger>
+            <Button variant='outline' size='sm'
+               ><Link /> Compartí este artículo</Button
+            >
+         </TooltipTrigger>
+         <TooltipContent side='right' class='text-sm bg-primary'>
+            Click para copiar el enlace
+         </TooltipContent>
+      </Tooltip>
+   </Container> -->
 </Layout>

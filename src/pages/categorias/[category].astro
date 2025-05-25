@@ -1,0 +1,56 @@
+---
+import { getCollection } from "astro:content";
+import { Button } from "@/components/starwind/button";
+import { PenLine } from "@lucide/astro";
+export async function getStaticPaths() {
+   const posts = await getCollection("blog");
+   const uniqueCategories = Array.from(
+      new Set(posts.map((post) => post.data.category))
+   );
+
+   return uniqueCategories.map((category) => ({
+      params: { category: encodeURIComponent(category) },
+   }));
+}
+import Layout from "../../layouts/Layout.astro";
+import Container from "@/components/commons/container.astro";
+import ArticleCard from "@/components/articles/article-card.astro";
+
+const { category } = Astro.params;
+const decodedCategory = decodeURIComponent(category); // ← para que "Derecho%20Internacional" sea "Derecho Internacional"
+
+const blogPosts = (await getCollection("blog")).filter(
+   (post) => post.data.category === decodedCategory
+);
+---
+
+<Layout>
+   <section class='py-10'>
+      <Container>
+         <div class='flex items-center justify-between mb-10'>
+            <h2 class='text-3xl font-bold border-l-4 border-primary pl-4'>
+               Artículos recientes de {decodedCategory}
+            </h2>
+            <Button variant='outline'><PenLine />Ver todos los artículos</Button
+            >
+         </div>
+         {
+            blogPosts.length > 0 ? (
+               <div class='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10'>
+                  {blogPosts.map((post) => (
+                     <ArticleCard
+                        title={post.data.title}
+                        description={post.data.description}
+                        imgSrc={post.data.imgSrc}
+                        category={post.data.category}
+                        href={`/posts/${post.slug}`}
+                     />
+                  ))}
+               </div>
+            ) : (
+               <p>No hay artículos en esta categoría.</p>
+            )
+         }
+      </Container>
+   </section>
+</Layout>
