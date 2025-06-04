@@ -1,0 +1,67 @@
+---
+import Container from "@/components/commons/container.astro";
+import { Goal, Star, ShieldCheck } from "@lucide/astro";
+---
+
+<section class='py-10' id='ultimos-articulos'>
+   <Container>
+      <div class='flex items-center justify-between mb-10'>
+         <h2 class='text-3xl font-bold border-l-4 border-primary pl-4'>
+            Sobre Mí
+         </h2>
+      </div>
+
+      <div class='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10'>
+         <div
+            class='relative rounded-xl shadow-md overflow-hidden border border-gray-600 transition hover:shadow-lg h-full hover:brightness-110 hover:border-gray-500'
+         >
+            <div class='flex flex-col gap-4 p-4 grow'>
+               <div class='flex items-center gap-2'>
+                  <ShieldCheck class='h-6 w-6 text-primary' />
+                  <h3 class='text-2xl font-semibold'>Valores</h3>
+               </div>
+
+               <p class='text-md opacity-80 text-pretty'>
+                  Confianza, cercania, transparencia, Empatía
+               </p>
+            </div>
+         </div>
+         <div
+            class='relative rounded-xl shadow-md overflow-hidden border border-gray-600 transition hover:shadow-lg h-full hover:brightness-110 hover:border-gray-500'
+         >
+            <div class='flex flex-col gap-4 p-4 grow'>
+               <div class='flex items-center gap-2'>
+                  <Goal class='h-6 w-6 text-primary' />
+                  <h3 class='text-2xl font-semibold'>Misión</h3>
+               </div>
+
+               <p class='text-md opacity-80 text-pretty'>
+                  Brindar asesoramiento legal claro, confiable y accesible,
+                  acompañando a cada cliente con cercanía, empatía y compromiso.
+                  Mi objetivo es construir soluciones jurídicas a través del
+                  diálogo y la comprensión, generando relaciones duraderas
+                  basadas en la confianza.
+               </p>
+            </div>
+         </div>
+         <div
+            class='relative rounded-xl shadow-md overflow-hidden border border-gray-600 transition hover:shadow-lg h-full hover:brightness-110 hover:border-gray-500'
+         >
+            <div class='flex flex-col gap-4 p-4 grow'>
+               <div class='flex items-center gap-2'>
+                  <Star class='h-6 w-6 text-primary' />
+                  <h3 class='text-2xl font-semibold'>Visión</h3>
+               </div>
+
+               <p class='text-md opacity-80 text-pretty'>
+                  Ser una referencia en asesoramiento legal personalizado,
+                  reconocido por integrar la excelencia profesional con un trato
+                  humano, transparente y participativo. Aspiro a transformar la
+                  experiencia legal en un proceso claro, colaborativo y cercano
+                  para cada persona o empresa.
+               </p>
+            </div>
+         </div>
+      </div>
+   </Container>
+</section>

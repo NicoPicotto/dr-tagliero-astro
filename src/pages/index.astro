@@ -2,14 +2,16 @@
 import Hero from "@/components/hero/hero.astro";
 import Layout from "../layouts/Layout.astro";
 import Divider from "@/components/commons/divider.astro";
+import About from "@/components/about/about.astro";
 import RecentArticles from "@/components/articles/recent-articles.astro";
 import Faq from "@/components/faq/faq.astro";
 ---
 
 <!-- http://localhost:4321/admin/index.html#/collections/blog -->
-
 <Layout>
    <Hero />
+   <Divider />
+   <About />
    <Divider />
    <RecentArticles />
    <Divider />

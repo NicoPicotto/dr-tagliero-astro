@@ -9,23 +9,30 @@ import imgSrc from "@/assets/placeholder-hero.webp";
    <Container>
       <div class='grid grid-cols-2 gap-10'>
          <div class='flex flex-col gap-6 justify-center col-span-1 max-w-lg'>
-            <h1 class='text-4xl font-bold'>Lorem ipsum dolor sit amet</h1>
+            <h1 class='text-4xl font-bold'>Dr. Matías Tagliero</h1>
             <p>
-               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla in
-               dapibus mi. Nam ac tristique libero. Nullam vulputate metus id
-               dolor pharetra, sit amet condimentum justo iaculis. Nunc sit amet
-               volutpat quam. Suspendisse sodales nisl sit amet augue eleifend,
-               dignissim commodo tortor luctus..
+               Soy asesor legal y mi enfoque profesional se basa en la
+               transparencia, la empatía y la cercanía. Trabajo generando
+               vínculos duraderos con mis clientes, acompañándolos en la toma de
+               decisiones con responsabilidad y compromiso. Mi objetivo es que
+               cada persona se sienta escuchada, comprendida y respaldada en
+               cada paso del camino.
             </p>
             <div class='flex gap-2'>
-               <Button variant='primary'>Lorem ipsum</Button>
-               <Button variant='outline'>Lorem ipsum</Button>
+               <a href='#contacto'>
+                  <Button variant='primary'>Contactarme</Button>
+               </a>
+               <a href='#ultimos-articulos'>
+                  <Button variant='outline'>Últimos artículos</Button>
+               </a>
             </div>
          </div>
          <div class='col-span-1 h-[40rem] overflow-hidden'>
             <Image
                src={imgSrc}
                alt='imagen hero'
+               loading='eager'
+               decoding='async'
                class='h-full w-full object-top object-cover'
             />
          </div>
