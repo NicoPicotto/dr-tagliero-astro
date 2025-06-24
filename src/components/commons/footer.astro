@@ -2,6 +2,8 @@
 import Container from "@/components/commons/container.astro";
 import { Button } from "@/components/starwind/button";
 import { Mail, Phone, MapPin } from "@lucide/astro";
+import { Image } from "astro:assets";
+import footerImg from "@/assets/logo-horizontal.svg";
 import { getCollection } from "astro:content";
 const allBlogPosts = (await getCollection("blog"))
    .sort((a, b) => b.data.posted.getTime() - a.data.posted.getTime())
@@ -14,7 +16,13 @@ const allBlogPosts = (await getCollection("blog"))
          class='flex flex-col md:flex-row justify-between gap-10 text-sm text-gray-200'
       >
          <div class='flex flex-col justify-between'>
-            <h2 class='text-lg font-semibold mb-2'>Dr. Matías Tagliero</h2>
+            <Image
+               loading='eager'
+               decoding='async'
+               class='h-16 w-fit'
+               src={footerImg}
+               alt='logo horizontal'
+            />
             <div class='flex flex-col gap-1'>
                <Button
                   variant='link'
