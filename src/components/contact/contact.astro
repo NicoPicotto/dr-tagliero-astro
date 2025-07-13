@@ -1,0 +1,69 @@
+---
+import { Label } from "@/components/starwind/label";
+import { Button } from "@/components/starwind/button";
+import { Input } from "@/components/starwind/input";
+import Container from "@/components/commons/container.astro";
+import { MessageCircle } from "@lucide/astro";
+import { Textarea } from "@/components/starwind/textarea";
+---
+
+<section class="py-10" id="contact">
+  <Container>
+    <div class="w-full grid grid-cols-9 gap-4">
+      <div class="col-span-3 flex flex-col gap-4 items-start">
+        <h1 class="text-4xl font-bold">Espero tu mensaje</h1>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla in dapibus mi. Lorem ipsum
+          dolor sit amet, consectetur adipiscing elit. Nulla in dapibus mi.
+        </p>
+        <a
+          href="https://wa.me/5493513884467?text=Hola%2C%20me%20gustaría%20hacer%20una%20consulta..."
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Button variant="secondary" size="sm"><MessageCircle />Contactarme vía Whatsapp</Button>
+        </a>
+      </div>
+      <div class="col-span-1"></div>
+      <div class="col-span-5">
+        <form class="w-full flex flex-col gap-4">
+          <div class="flex gap-2">
+            <div class="space-y-2 w-full">
+              <Label size="sm" for="name">Nombre</Label>
+              <Input id="name" size="sm" name="name" placeholder="Juan" />
+            </div>
+            <div class="space-y-2 w-full">
+              <Label size="sm" for="lastName">Apellido</Label>
+              <Input id="lastName" name="lastName" size="sm" placeholder="Perez" />
+            </div>
+          </div>
+          <div class="flex gap-2">
+            <div class="space-y-2 w-full">
+              <Label size="sm" for="email">Email</Label>
+              <Input
+                id="email"
+                size="sm"
+                type="email"
+                name="email"
+                placeholder="juanperez@gmail.com"
+              />
+            </div>
+            <div class="space-y-2 w-full">
+              <Label size="sm" for="phone">Teléfono</Label>
+              <Input id="phone" size="sm" name="tel" placeholder="351-12345678" />
+            </div>
+          </div>
+          <Textarea
+            id="message"
+            name="message"
+            size="sm"
+            aria-multiline="true"
+            class="min-h-20"
+            placeholder="Mensaje..."
+          />
+          <Button type="submit" variant="primary" class="w-fit">Enviar mensaje</Button>
+        </form>
+      </div>
+    </div>
+  </Container>
+</section>

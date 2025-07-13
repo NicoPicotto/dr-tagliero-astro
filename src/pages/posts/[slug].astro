@@ -1,87 +1,93 @@
 ---
 import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
+import { Button } from "@/components/starwind/button";
 import Container from "@/components/commons/container.astro";
 import {
-   Breadcrumb,
-   BreadcrumbItem,
-   BreadcrumbLink,
-   BreadcrumbList,
-   BreadcrumbSeparator,
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbSeparator,
 } from "@/components/starwind/breadcrumb";
 import "@/styles/prose-lite.css";
 import ArticleCard from "@/components/articles/article-card.astro";
+import Divider from "@/components/commons/divider.astro";
+import { Link } from "@lucide/astro";
 
 export async function getStaticPaths() {
-   const posts = await getCollection("blog");
-   return posts.map((post) => ({
-      params: { slug: post.slug },
-      props: { post },
-   }));
+  const posts = await getCollection("blog");
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
 }
 
 const { post } = Astro.props;
 const allBlogPosts = (await getCollection("blog"))
-   .filter(
-      (p) => p.data.category === post.data.category && p.slug !== post.slug
-   )
-   .sort((a, b) => b.data.posted.getTime() - a.data.posted.getTime())
-   .slice(0, 3);
+  .filter((p) => p.data.category === post.data.category && p.slug !== post.slug)
+  .sort((a, b) => b.data.posted.getTime() - a.data.posted.getTime())
+  .slice(0, 3);
 const { Content } = await post.render();
 ---
 
 <Layout>
-   <Container>
-      <article class='my-4'>
-         <Breadcrumb>
-            <BreadcrumbList>
-               <BreadcrumbItem>
-                  <BreadcrumbLink href='/articulos'>Artículos</BreadcrumbLink>
-               </BreadcrumbItem>
-               <BreadcrumbSeparator />
-               <BreadcrumbItem>
-                  <BreadcrumbLink
-                     href={`/categorias/${encodeURIComponent(post.data.category)}`}
-                  >
-                     {post.data.category}
-                  </BreadcrumbLink>
-               </BreadcrumbItem>
-            </BreadcrumbList>
-         </Breadcrumb>
-         <div class='flex flex-col gap-6 justify-centermax-w-lg my-6'>
-            <h1 class='text-4xl font-bold'>{post.data.title}</h1>
-            <p>{post.data.description}</p>
-            <div class='rounded-xl overflow-hidden'>
-               <img
-                  src={post.data.imgSrc}
-                  alt={post.data.title}
-                  class='w-full h-full object-cover'
-               />
+  <Container>
+    <article class="mb-20 mt-4">
+      <div class="flex flex-col gap-4 justify-centermax-w-lg my-6">
+        <div class="rounded-xl h-[25rem] overflow-hidden mb-4 flex items-center justify-center">
+          <img
+            src={post.data.imgSrc}
+            alt={post.data.title}
+            class="w-full h-auto object-cover object-center"
+          />
+        </div>
+        <div class="grid grid-cols-9 relative">
+          <div class="col-span-1 h-full">
+            <div class="flex flex-col gap-4 items-center sticky top-35">
+              <a>
+                <Button variant="outline"> <Link class="w-16 h-16" /></Button>
+              </a>
+              <a>
+                <Button variant="outline"> <Link class="w-16 h-16" /></Button>
+              </a>
+              <a>
+                <Button variant="outline"> <Link class="w-16 h-16" /></Button>
+              </a>
+              <a>
+                <Button variant="outline"> <Link class="w-16 h-16" /></Button>
+              </a>
             </div>
-         </div>
-         <div class='relative grid grid-cols-9 gap-10'>
-            <div class='col-span-6 prose-lite'><Content /></div>
-            {
-               allBlogPosts.length > 0 && (
-                  <div class='col-span-3 flex flex-col gap-4 h-fit sticky top-[7rem]'>
-                     <h3 class='text-xl font-bold'>Artículos relacionados</h3>
-                     <div class='w-full h-px mb-2 bg-[repeating-linear-gradient(to_right,#d82323_0_4px,transparent_4px,transparent_12px)]' />
-                     {allBlogPosts.map((post) => (
-                        <ArticleCard
-                           title={post.data.title}
-                           description={post.data.description}
-                           imgSrc={post.data.imgSrc}
-                           category={post.data.category}
-                           href={`/posts/${post.slug}`}
-                        />
-                     ))}
-                  </div>
-               )
-            }
-         </div>
-      </article>
-   </Container>
-   <!-- <Divider />
+          </div>
+          <div class="col-span-8 flex flex-col gap-4 max-w-prose">
+            <Breadcrumb>
+              <BreadcrumbList>
+                <BreadcrumbItem>
+                  <BreadcrumbLink href="/articulos">Artículos</BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem>
+                  <BreadcrumbLink href={`/categorias/${encodeURIComponent(post.data.category)}`}>
+                    {post.data.category}
+                  </BreadcrumbLink>
+                </BreadcrumbItem>
+              </BreadcrumbList>
+            </Breadcrumb>
+            <h1 class="max-w-prose text-4xl font-bold">{post.data.title}</h1>
+            <p class="max-w-prose">{post.data.description}</p>
+            <div
+              class="max-w-prose h-px my-4 bg-[repeating-linear-gradient(to_right,#d82323_0_4px,transparent_4px,transparent_12px)]"
+            >
+            </div>
+            <div>
+              <div class="max-w-prose prose-lite"><Content /></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- <Divider />
    <Container>
       <Tooltip>
          <TooltipTrigger>
@@ -94,4 +100,28 @@ const { Content } = await post.render();
          </TooltipContent>
       </Tooltip>
    </Container> -->
+  </Container>
+  {
+    allBlogPosts.length > 0 && (
+      <div class="py-20 bg-background-darker">
+        <Container>
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
+            <div class="col-span-1 flex flex-col gap-6 h-fit">
+              <h3 class="text-2xl font-bold">Artículos relacionados</h3>
+
+              {allBlogPosts.map((post) => (
+                <ArticleCard
+                  title={post.data.title}
+                  description={post.data.description}
+                  imgSrc={post.data.imgSrc}
+                  category={post.data.category}
+                  href={`/posts/${post.slug}`}
+                />
+              ))}
+            </div>
+          </div>
+        </Container>
+      </div>
+    )
+  }
 </Layout>

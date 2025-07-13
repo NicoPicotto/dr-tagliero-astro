@@ -2,40 +2,40 @@
 import Container from "@/components/commons/container.astro";
 import { Button } from "@/components/starwind/button";
 import { Image } from "astro:assets";
-import imgSrc from "@/assets/placeholder-hero.webp";
+import imgSrc from "@/assets/iso.svg";
 ---
 
-<section class='py-10'>
-   <Container>
-      <div class='grid grid-cols-2 gap-10'>
-         <div class='flex flex-col gap-6 justify-center col-span-1 max-w-lg'>
-            <h1 class='text-4xl font-bold'>Dr. Matías Tagliero</h1>
-            <p>
-               Soy asesor legal y mi enfoque profesional se basa en la
-               transparencia, la empatía y la cercanía. Trabajo generando
-               vínculos duraderos con mis clientes, acompañándolos en la toma de
-               decisiones con responsabilidad y compromiso. Mi objetivo es que
-               cada persona se sienta escuchada, comprendida y respaldada en
-               cada paso del camino.
-            </p>
-            <div class='flex gap-2'>
-               <a href='#contacto'>
-                  <Button variant='primary'>Contactarme</Button>
-               </a>
-               <a href='#ultimos-articulos'>
-                  <Button variant='outline'>Últimos artículos</Button>
-               </a>
-            </div>
-         </div>
-         <div class='col-span-1 h-[40rem] overflow-hidden'>
-            <Image
-               src={imgSrc}
-               alt='imagen hero'
-               loading='eager'
-               decoding='async'
-               class='h-full w-full object-top object-cover'
-            />
-         </div>
+<section class="py-1">
+  <Container>
+    <div class="grid grid-cols-2 gap-10 items-center relative h-[40rem]">
+      <div class="flex flex-col gap-6 justify-center col-span-1 max-w-lg">
+        <h1 class="text-4xl font-bold">Dr. Matías Tagliero</h1>
+        <p>
+          Soy asesor legal y mi enfoque profesional se basa en la transparencia, la empatía y la
+          cercanía. Trabajo generando vínculos duraderos con mis clientes, acompañándolos en la toma
+          de decisiones con responsabilidad y compromiso. Mi objetivo es que cada persona se sienta
+          escuchada, comprendida y respaldada en cada paso del camino.
+        </p>
+        <div class="flex gap-2">
+          <a href="/contacto">
+            <Button variant="primary">Contactarme</Button>
+          </a>
+          <a href="#ultimos-articulos">
+            <Button variant="outline">Últimos artículos</Button>
+          </a>
+        </div>
       </div>
-   </Container>
+      <div
+        class="absolute top-0 right-[-10vw] h-full max-h-[40rem] w-auto pointer-events-none z-[-1]"
+      >
+        <Image
+          src={imgSrc}
+          alt="imagen hero"
+          loading="eager"
+          decoding="async"
+          class="h-full w-full object-top object-cover"
+        />
+      </div>
+    </div>
+  </Container>
 </section>
