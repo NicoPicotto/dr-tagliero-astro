@@ -47,14 +47,27 @@ import "@/styles/starwind.css";
    </head>
    <body>
       <Navbar />
-      <slot />
+      <main class="flex-grow">
+         <slot />
+      </main>
       <Footer />
    </body>
 </html>
 
 <style>
-   html,
+   html {
+      scroll-behavior: smooth;
+   }
+   
+   
+   
    body {
-      margin: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+   }
+   
+   .flex-grow {
+      flex: 1;
    }
 </style>

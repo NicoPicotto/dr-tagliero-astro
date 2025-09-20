@@ -1,13 +1,28 @@
 ---
 import Container from "@/components/commons/container.astro";
 import { Goal, Star, ShieldCheck } from "@lucide/astro";
+import { Image } from "astro:assets";
+import ProfilePic from "@/assets/profile-pic.png";
 ---
 
-<section class="py-20 mt-20 bg-background-darker" id="ultimos-articulos">
+<section class="py-30 mt-20 bg-background-darker" id="sobre-mi">
   <Container>
-    <div class="flex items-center justify-between mb-10">
-      <h2 class="text-3xl font-bold border-l-4 border-primary pl-4">Sobre Mí</h2>
+    <div
+      class="flex mb-20 gap-20 p-20 justify-between rounded-xl shadow-md overflow-hidden border border-gray-600 transition glass-footer hover:shadow-lg hover:brightness-110"
+    >
+      <div class="w-[50%]">
+        <div class="bg-foreground rounded-md overflow-hidden">
+          <Image src={ProfilePic} alt="Foto de Matias Tagliero" class="w-full" />
+        </div>
+      </div>
+      <div class="flex w-[50%] flex-col gap-10">
+        <h3 class="text-3xl font-bold">Sobre mí</h3>
+      </div>
     </div>
+
+    <!-- <div class="flex items-center justify-between mb-10">
+      <h2 class="text-3xl font-bold border-l-4 border-primary pl-4">Sobre Mí</h2>
+    </div> -->
 
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
       <div

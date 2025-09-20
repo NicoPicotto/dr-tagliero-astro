@@ -1,0 +1,30 @@
+---
+import Container from "@/components/commons/container.astro";
+import { Button } from "@/components/starwind/button";
+import { Image } from "astro:assets";
+import imgSrc from "@/assets/iso.svg";
+---
+
+<section class="py-50 bg-background-darker relative overflow-hidden">
+  <div
+    class="absolute bottom-[-5vw] left-[-5vw] h-full max-h-[50rem] w-auto pointer-events-none z-[1]"
+  >
+    <Image
+      src={imgSrc}
+      alt="imagen hero"
+      loading="eager"
+      decoding="async"
+      class="h-full w-full object-top object-cover grayscale opacity-10"
+    />
+  </div>
+  <Container>
+    <div class="flex flex-col gap-10 items-center">
+      <h3 class="text-4xl text-primary font-bold max-w-[40ch] text-center">
+        Mi objetivo es construir soluciones jurídicas a través del diálogo y la comprensión
+      </h3>
+      <a href="/contacto">
+        <Button variant="primary">Agendá tu consulta</Button>
+      </a>
+    </div>
+  </Container>
+</section>

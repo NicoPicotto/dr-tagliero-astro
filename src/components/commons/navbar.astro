@@ -6,112 +6,92 @@ import { Menu } from "@lucide/astro";
 import logoSrc from "@/assets/iso.svg";
 ---
 
-<nav class='w-full py-6 sticky top-0 z-10'>
-   <Container>
-      <div class='flex items-center p-4 justify-between glass'>
-         <a href='/' class='ml-2'>
-            <Image
-               src={logoSrc}
-               alt='Logo Matias Tagliero'
-               loading='eager'
-               decoding='async'
-               class='h-8 w-auto'
-            />
-         </a>
+<nav class="w-full py-6 sticky top-0 z-10">
+  <Container>
+    <div class="flex items-center p-4 justify-between glass">
+      <a href="/" class="ml-2">
+        <Image
+          src={logoSrc}
+          alt="Logo Matias Tagliero"
+          loading="eager"
+          decoding="async"
+          class="h-8 w-auto"
+        />
+      </a>
 
-         <!-- Desktop Links -->
-         <div class='hidden md:flex items-center gap-2'>
-            <a href='/'>
-               <Button variant='ghost'>Inicio</Button>
-            </a>
-            <a href='#sobre-mi'>
-               <Button variant='ghost'>Sobre Mí</Button>
-            </a>
-            <a href='/articulos'>
-               <Button variant='ghost'>Artículos</Button>
-            </a>
-            <a href='#faq'>
-               <Button variant='ghost'>Preguntas Frecuentes</Button>
-            </a>
-            <a href='/contacto'>
-               <Button variant='primary'>Contacto</Button>
-            </a>
-         </div>
-
-         <!-- Mobile menu sin Alpine -->
-         <div class='md:hidden relative'>
-            <button id='menu-toggle' aria-label='Abrir menú'>
-               <Menu class='h-6 w-6' />
-            </button>
-
-            <div
-               id='mobile-menu'
-               hidden
-               class='fixed top-16 left-0 right-0 z-50 bg-background border-t border-border p-6 space-y-2 shadow-lg'
-            >
-               <a href='/'
-                  ><Button variant='ghost' class='w-full justify-start'
-                     >Inicio</Button
-                  ></a
-               >
-               <a href='#sobre-mi'
-                  ><Button variant='ghost' class='w-full justify-start'
-                     >Sobre Mí</Button
-                  ></a
-               >
-               <a href='/blog'
-                  ><Button variant='ghost' class='w-full justify-start'
-                     >Artículos</Button
-                  ></a
-               >
-               <a href='#faq'
-                  ><Button variant='ghost' class='w-full justify-start'
-                     >Preguntas Frecuentes</Button
-                  ></a
-               >
-               <a href='#contacto'
-                  ><Button variant='primary' class='w-full justify-start'
-                     >Contacto</Button
-                  ></a
-               >
-            </div>
-         </div>
+      <!-- Desktop Links -->
+      <div class="hidden md:flex items-center gap-2">
+        <a href="/#top">
+          <Button variant="ghost">Inicio</Button>
+        </a>
+        <a href="/#sobre-mi">
+          <Button variant="ghost">Sobre Mí</Button>
+        </a>
+        <a href="/articulos">
+          <Button variant="ghost">Artículos</Button>
+        </a>
+        <!-- <a href="/#faq">
+          <Button variant="ghost">Preguntas Frecuentes</Button>
+        </a> -->
+        <a href="/contacto">
+          <Button variant="primary">Contacto</Button>
+        </a>
       </div>
-   </Container>
+
+      <!-- Mobile menu sin Alpine -->
+      <div class="md:hidden relative">
+        <button id="menu-toggle" aria-label="Abrir menú">
+          <Menu class="h-6 w-6" />
+        </button>
+
+        <div
+          id="mobile-menu"
+          hidden
+          class="fixed top-16 left-0 right-0 z-50 bg-background border-t border-border p-6 space-y-2 shadow-lg"
+        >
+          <a href="#top"><Button variant="ghost" class="w-full justify-start">Inicio</Button></a>
+          <a href="/#sobre-mi"
+            ><Button variant="ghost" class="w-full justify-start">Sobre Mí</Button></a
+          >
+          <a href="/blog"><Button variant="ghost" class="w-full justify-start">Artículos</Button></a
+          >
+          <!-- <a href="/#faq"
+            ><Button variant="ghost" class="w-full justify-start">Preguntas Frecuentes</Button></a
+          > -->
+          <a href="#contacto"
+            ><Button variant="primary" class="w-full justify-start">Contacto</Button></a
+          >
+        </div>
+      </div>
+    </div>
+  </Container>
 </nav>
 
 <script>
-   const toggle = document.getElementById("menu-toggle");
-   const menu = document.getElementById("mobile-menu");
+  const toggle = document.getElementById("menu-toggle");
+  const menu = document.getElementById("mobile-menu");
 
-   if (toggle && menu) {
-      toggle.addEventListener("click", (e) => {
-         e.stopPropagation();
-         menu.hidden = !menu.hidden;
-      });
+  if (toggle && menu) {
+    toggle.addEventListener("click", (e) => {
+      e.stopPropagation();
+      menu.hidden = !menu.hidden;
+    });
 
-      document.addEventListener("click", (e) => {
-         if (
-            !menu.contains(e.target as Node) &&
-            !toggle.contains(e.target as Node)
-         ) {
-            menu.hidden = true;
-         }
-      });
-   }
+    document.addEventListener("click", (e) => {
+      if (!menu.contains(e.target as Node) && !toggle.contains(e.target as Node)) {
+        menu.hidden = true;
+      }
+    });
+  }
 </script>
 
 <style>
-   .glass {
-      background: linear-gradient(
-         135deg,
-         rgba(255, 255, 255, 0.1),
-         rgba(255, 255, 255, 0)
-      );
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border-radius: 10px;
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.37);
-   }
+  .glass {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.37);
+  }
 </style>
