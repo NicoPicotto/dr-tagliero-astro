@@ -27,9 +27,15 @@ token: process.env.TINA_TOKEN!,
    schema: {
       collections: [
          {
-            name: "blog",
+            name: "post",
             label: "Posts",
             path: "/src/content/blog",
+            ui: {
+               allowedActions: {
+                  create: true,
+                  delete: true,
+               },
+            },
             fields: [
                {
                   type: "string",

@@ -8,15 +8,36 @@ import ProfilePic from "@/assets/profile-pic.png";
 <section class="py-30 mt-20 bg-background-darker" id="sobre-mi">
   <Container>
     <div
-      class="flex mb-20 gap-20 p-20 justify-between rounded-xl shadow-md overflow-hidden border border-gray-600 transition glass-footer hover:shadow-lg hover:brightness-110"
+      class="flex flex-col md:flex-row mb-20 gap-10 md:gap-12 p-6 md:p-12 justify-between rounded-xl shadow-md overflow-hidden border border-gray-600 transition glass-footer hover:shadow-lg hover:brightness-110"
     >
-      <div class="w-[50%]">
-        <div class="bg-foreground rounded-md overflow-hidden">
-          <Image src={ProfilePic} alt="Foto de Matias Tagliero" class="w-full" />
+      <div class="w-full md:w-[50%]">
+        <div class="bg-foreground h-full rounded-md overflow-hidden">
+          <Image
+            src={ProfilePic}
+            alt="Foto de Matias Tagliero"
+            class="w-full h-full object-cover"
+          />
         </div>
       </div>
-      <div class="flex w-[50%] flex-col gap-10">
+      <div class="flex w-full md:w-[50%] flex-col gap-4">
         <h3 class="text-3xl font-bold">Sobre mí</h3>
+        <p>
+          Soy Matias Tagliero, egresado de la Facultad de Derecho y Ciencias Sociales de la
+          Universidad Nacional de Córdoba. Entiendo que detrás de cada consulta legal hay una
+          persona, una familia o un proyecto buscando tranquilidad. Como abogado, mi objetivo es
+          derribar la barrera de lo "técnico-jurídico" para ofrecerte un asesoramiento claro y
+          humano. Ya sea en derecho civil, comercial o asesoría en propiedades, entre otras, el
+          enfoque siempre será cuidar tus intereses con la transparencia y responsabilidad que
+          necesitás para sentirte realmente respaldado.
+        </p>
+        <p>
+          Creo en una abogacía moderna, dinámica y, sobre todo, presente, donde mi prioridad es
+          resolver tus desafíos para que vos puedas enfocarte en lo que realmente te importa. Por
+          eso, además de la abogacía tradicional, ayudo a empresas a crecer con bases sólidas,
+          integrando la consultoría legal con la gestión de recursos humanos, asistiendo a negocios
+          y pymes a encontrar el talento adecuado mientras me encargo de que toda la parte
+          contractual esté en perfecto orden. Lo que necesitas, esta acá...
+        </p>
       </div>
     </div>
 
@@ -28,7 +49,7 @@ import ProfilePic from "@/assets/profile-pic.png";
       <div
         class="relative rounded-xl shadow-md overflow-hidden border border-gray-600 transition glass-footer hover:shadow-lg hover:brightness-110"
       >
-        <div class="flex flex-col gap-4 p-4 grow">
+        <div class="flex flex-col gap-4 p-6 grow">
           <div class="flex items-center gap-2">
             <ShieldCheck class="h-6 w-6 text-primary" />
             <h3 class="text-2xl font-semibold">Valores</h3>
@@ -45,7 +66,7 @@ import ProfilePic from "@/assets/profile-pic.png";
       <div
         class="relative rounded-xl shadow-md overflow-hidden border border-gray-600 transition glass-footer hover:shadow-lg hover:brightness-110"
       >
-        <div class="flex flex-col gap-4 p-4 grow">
+        <div class="flex flex-col gap-4 p-6 grow">
           <div class="flex items-center gap-2">
             <Goal class="h-6 w-6 text-primary" />
             <h3 class="text-2xl font-semibold">Misión</h3>
@@ -61,7 +82,7 @@ import ProfilePic from "@/assets/profile-pic.png";
       <div
         class="relative rounded-xl shadow-md overflow-hidden border border-gray-600 transition glass-footer hover:shadow-lg hover:brightness-110"
       >
-        <div class="flex flex-col gap-4 p-4 grow">
+        <div class="flex flex-col gap-4 p-6 grow">
           <div class="flex items-center gap-2">
             <Star class="h-6 w-6 text-primary" />
             <h3 class="text-2xl font-semibold">Visión</h3>

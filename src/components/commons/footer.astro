@@ -53,11 +53,11 @@ const allBlogPosts = (await getCollection("blog"))
             size="sm"
           >
             <MapPin size="14" />
-            Av. Justicia 123, Buenos Aires, Argentina
+            Saavedra 365, General Deheza, Córdoba.
           </Button>
         </div>
       </div>
-      <div class="flex gap-30">
+      <div class="flex flex-col md:flex-row gap-10 md:gap-30">
         <div>
           <h2 class="text-lg font-semibold mb-2">Navegación</h2>
           <div class="flex flex-col gap-2">
@@ -72,7 +72,7 @@ const allBlogPosts = (await getCollection("blog"))
           <div class="flex flex-col gap-2">
             {
               allBlogPosts.map((post) => (
-                <a href={`/blog/${post.slug}`} class="inline-block max-w-[400px] truncate">
+                <a href={`/posts/${post.slug}`} class="inline-block max-w-[400px] truncate">
                   {post.data.title}
                 </a>
               ))

@@ -9,12 +9,13 @@ import { Textarea } from "@/components/starwind/textarea";
 
 <section class="py-10" id="contact">
   <Container>
-    <div class="w-full grid grid-cols-9 gap-4">
-      <div class="col-span-3 flex flex-col gap-4 items-start">
-        <h1 class="text-4xl font-bold">Espero tu mensaje</h1>
+    <div class="w-full grid grid-cols-9 gap-12 md:gap-4">
+      <div class="col-span-8 md:col-span-3 flex flex-col gap-4 items-start">
+        <h1 class="text-2xl md:text-4xl font-bold">Espero tu mensaje</h1>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla in dapibus mi. Lorem ipsum
-          dolor sit amet, consectetur adipiscing elit. Nulla in dapibus mi.
+          Cada situación merece ser escuchada con atención y responsabilidad. Si necesitás
+          asesoramiento legal o querés realizar una consulta, podés comunicarte a través de este
+          formulario y te responderé a la brevedad.
         </p>
         <a
           href="https://wa.me/5493513884467?text=Hola%2C%20me%20gustaría%20hacer%20una%20consulta..."
@@ -25,9 +26,9 @@ import { Textarea } from "@/components/starwind/textarea";
         </a>
       </div>
       <div class="col-span-1"></div>
-      <div class="col-span-5">
-        <form class="w-full flex flex-col gap-4">
-          <div class="flex gap-2">
+      <div class="col-span-8 md:col-span-5">
+        <form id="contact-form" class="w-full flex flex-col gap-4">
+          <div class="flex flex-col md:flex-row gap-2">
             <div class="space-y-2 w-full">
               <Label size="sm" for="name">Nombre</Label>
               <Input id="name" size="sm" name="name" placeholder="Juan" />
@@ -37,7 +38,7 @@ import { Textarea } from "@/components/starwind/textarea";
               <Input id="lastName" name="lastName" size="sm" placeholder="Perez" />
             </div>
           </div>
-          <div class="flex gap-2">
+          <div class="flex flex-col md:flex-row gap-2">
             <div class="space-y-2 w-full">
               <Label size="sm" for="email">Email</Label>
               <Input
@@ -61,9 +62,45 @@ import { Textarea } from "@/components/starwind/textarea";
             class="min-h-20"
             placeholder="Mensaje..."
           />
-          <Button type="submit" variant="primary" class="w-fit">Enviar mensaje</Button>
+          <Button id="submit-btn" type="submit" variant="primary" class="w-fit">Enviar mensaje</Button>
+          <p id="form-feedback" class="text-sm hidden"></p>
         </form>
       </div>
     </div>
   </Container>
 </section>
+
+<script>
+  const form = document.getElementById("contact-form") as HTMLFormElement;
+  const submitBtn = document.getElementById("submit-btn") as HTMLButtonElement;
+  const feedback = document.getElementById("form-feedback") as HTMLParagraphElement;
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Enviando...";
+    feedback.className = "text-sm hidden";
+
+    const data = new FormData(form);
+
+    try {
+      const res = await fetch("/sendEmail.php", { method: "POST", body: data });
+      const json = await res.json();
+
+      if (json.success) {
+        feedback.textContent = "¡Mensaje enviado! Te responderé a la brevedad.";
+        feedback.className = "text-sm text-green-400";
+        form.reset();
+      } else {
+        feedback.textContent = json.error ?? "Ocurrió un error. Intentá nuevamente.";
+        feedback.className = "text-sm text-red-400";
+      }
+    } catch {
+      feedback.textContent = "Error de conexión. Intentá nuevamente.";
+      feedback.className = "text-sm text-red-400";
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Enviar mensaje";
+    }
+  });
+</script>
