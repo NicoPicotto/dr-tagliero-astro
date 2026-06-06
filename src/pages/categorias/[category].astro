@@ -24,7 +24,11 @@ const blogPosts = (await getCollection("blog")).filter(
 );
 ---
 
-<Layout>
+<Layout
+  title={`${decodedCategory} — Artículos`}
+  description={`Artículos sobre ${decodedCategory} escritos por el Abog. Matías Tagliero.`}
+  canonical={`https://matiastagliero.com/categorias/${category}`}
+>
    <section class='py-10'>
       <Container>
          <div class='flex items-center justify-between mb-10'>

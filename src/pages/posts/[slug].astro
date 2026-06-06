@@ -30,7 +30,29 @@ const allBlogPosts = (await getCollection("blog"))
 const { Content } = await post.render();
 ---
 
-<Layout>
+<Layout
+  title={post.data.title}
+  description={post.data.description}
+  ogImage={`https://matiastagliero.com${post.data.imgSrc}`}
+  canonical={`https://matiastagliero.com/posts/${post.slug}`}
+  type="article"
+>
+  <Fragment slot="head">
+    <script
+      is:inline
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Article",
+        headline: post.data.title,
+        description: post.data.description,
+        datePublished: post.data.posted.toISOString(),
+        author: { "@type": "Person", name: "Matías Tagliero" },
+        image: `https://matiastagliero.com${post.data.imgSrc}`,
+        url: `https://matiastagliero.com/posts/${post.slug}`,
+      })}
+    />
+  </Fragment>
   <Container>
     <article class="mb-20 mt-4">
       <div class="flex flex-col gap-4 justify-centermax-w-lg my-6">

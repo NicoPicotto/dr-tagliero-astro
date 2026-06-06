@@ -1,73 +1,133 @@
 ---
-// style import
 import Navbar from "@/components/commons/navbar.astro";
 import Footer from "@/components/commons/footer.astro";
 import "@/styles/starwind.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  canonical?: string;
+  type?: "website" | "article";
+  noindex?: boolean;
+}
+
+const SITE_URL = "https://matiastagliero.com";
+const SITE_NAME = "Abog. Matías Tagliero";
+const DEFAULT_DESCRIPTION =
+  "Matías Tagliero – Abogado. Especializado en derecho civil, penal, laboral y familiar. Asesoría legal personalizada, elaboración de contratos y representación judicial en Argentina.";
+const DEFAULT_OG_IMAGE = `${SITE_URL}/favicon.svg`;
+
+const {
+  title,
+  description = DEFAULT_DESCRIPTION,
+  ogImage = DEFAULT_OG_IMAGE,
+  canonical = `${SITE_URL}${Astro.url.pathname}`,
+  type = "website",
+  noindex = false,
+} = Astro.props;
+
+const pageTitle = title ? `${title} | ${SITE_NAME}` : SITE_NAME;
+
+const legalServiceSchema = {
+  "@context": "https://schema.org",
+  "@type": "LegalService",
+  name: SITE_NAME,
+  url: SITE_URL,
+  telephone: "+5493513884467",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Córdoba",
+    addressCountry: "AR",
+  },
+  areaServed: "Argentina",
+  description: DEFAULT_DESCRIPTION,
+};
 ---
 
 <!doctype html>
-<html lang='es'>
-   <head>
-      <meta charset='UTF-8' />
-      <meta name='viewport' content='width=device-width' />
-      <link rel='preconnect' href='https://fonts.googleapis.com' />
-      <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin />
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Primary SEO -->
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <meta
+      name="keywords"
+      content="abogado, Matías Tagliero, MP 12345, derecho civil, derecho penal, derecho laboral, derecho familiar, asesoría legal, representación judicial, consultoría jurídica, contratos, litigios, abogado en Argentina"
+    />
+    <meta name="robots" content={noindex ? "noindex,nofollow" : "index,follow"} />
+    <link rel="canonical" href={canonical} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content={type} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content="es_AR" />
+    <meta property="og:site_name" content={SITE_NAME} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript>
       <link
-         rel='preload'
-         as='style'
-         href='https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap'
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap"
       />
-      <link
-         rel='stylesheet'
-         href='https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap'
-         media='print'
-         onload="this.media='all'"
-      />
-      <noscript>
-         <link
-            rel='stylesheet'
-            href='https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap'
-         />
-      </noscript>
-      <meta
-         name='description'
-         content='Matías Tagliero – Abogado MP 12345. Especializado en derecho civil, penal, laboral y familiar. Ofrecemos asesoría legal personalizada, elaboración de contratos y representación judicial en Argentina.'
-      />
-      <meta
-         name='keywords'
-         content='abogado, Matías Tagliero, MP 12345, derecho civil, derecho penal, derecho laboral, derecho familiar, asesoría legal, representación judicial, consultoría jurídica, contratos, litigios, abogado en Argentina'
-      />
-      <!-- <script
-         async
-         src='https://cdn.tina.io/assets/iframe-resizer/tinacms-cloudframe.js'
-      ></script> -->
-      <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
-      <meta name='generator' content={Astro.generator} />
-      <title>Abog. Matías Tagliero - MP 12345</title>
-   </head>
-   <body>
-      <Navbar />
-      <main class="flex-grow">
-         <slot />
-      </main>
-      <Footer />
-   </body>
+    </noscript>
+
+    <!-- Favicon & Generator -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Schema.org: LegalService -->
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(legalServiceSchema)} />
+
+    <!-- Additional head content injected by pages (e.g. Article schema) -->
+    <slot name="head" />
+  </head>
+  <body>
+    <Navbar />
+    <main class="flex-grow">
+      <slot />
+    </main>
+    <Footer />
+  </body>
 </html>
 
 <style>
-   html {
-      scroll-behavior: smooth;
-   }
-   
-   
-   
-   body {
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-   }
-   
-   .flex-grow {
-      flex: 1;
-   }
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  .flex-grow {
+    flex: 1;
+  }
 </style>
