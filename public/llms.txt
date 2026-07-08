@@ -1,0 +1,33 @@
+# Abog. Matías Tagliero
+
+> Sitio web del Abogado Matías Tagliero, egresado de la Facultad de Derecho y Ciencias Sociales de la Universidad Nacional de Córdoba (UNC). Especialista en derecho civil, penal, laboral, familiar, inmobiliario, sucesiones y jubilaciones. Brinda asesoría legal personalizada, elaboración de contratos y representación judicial en Argentina.
+
+## Páginas principales
+
+- [Inicio](https://matiastagliero.com/): Presentación del abogado y sus servicios jurídicos
+- [Artículos](https://matiastagliero.com/articulos/): Blog legal con artículos sobre derecho argentino
+- [Contacto](https://matiastagliero.com/contacto/): Formulario de consulta y datos de contacto
+
+## Especialidades
+
+- **Derecho Civil**: contratos, obligaciones, responsabilidad civil
+- **Derecho Penal**: representación en causas penales
+- **Derecho Laboral**: conflictos laborales, despidos, indemnizaciones
+- **Derecho Familiar**: divorcio, alimentos, adopción, guarda
+- **Derecho Inmobiliario**: boleto de compraventa, escrituración, derechos reales
+- **Sucesiones y Herencias**: procesos sucesorios, conflictos entre herederos
+- **Jubilaciones**: sistema previsional argentino, trámites ante ANSES
+
+## Sobre el profesional
+
+Matías Tagliero es abogado egresado de la Universidad Nacional de Córdoba. Su enfoque profesional se basa en la transparencia, la empatía y la cercanía, acompañando a cada cliente en la toma de decisiones con responsabilidad y compromiso.
+
+## Contacto y ubicación
+
+- **Email**: hola@matiastagliero.com
+- **Teléfono / WhatsApp**: +54 9 351 388-4467
+- **Dirección**: Saavedra 365, General Deheza, Córdoba, Argentina
+
+## Sitemap
+
+https://matiastagliero.com/sitemap-index.xml

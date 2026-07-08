@@ -29,6 +29,26 @@ const blogPosts = (await getCollection("blog")).filter(
   description={`Artículos sobre ${decodedCategory} escritos por el Abog. Matías Tagliero.`}
   canonical={`https://matiastagliero.com/categorias/${category}`}
 >
+  <Fragment slot="head">
+    <script
+      is:inline
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Inicio", item: "https://matiastagliero.com/" },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Artículos",
+            item: "https://matiastagliero.com/articulos/",
+          },
+          { "@type": "ListItem", position: 3, name: decodedCategory },
+        ],
+      })}
+    />
+  </Fragment>
    <section class='py-10'>
       <Container>
          <div class='flex items-center justify-between mb-10'>

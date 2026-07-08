@@ -16,7 +16,7 @@ const SITE_URL = "https://matiastagliero.com";
 const SITE_NAME = "Abog. Matías Tagliero";
 const DEFAULT_DESCRIPTION =
   "Matías Tagliero – Abogado. Especializado en derecho civil, penal, laboral y familiar. Asesoría legal personalizada, elaboración de contratos y representación judicial en Argentina.";
-const DEFAULT_OG_IMAGE = `${SITE_URL}/favicon.svg`;
+const DEFAULT_OG_IMAGE = `${SITE_URL}/profile-pic.png`;
 
 const {
   title,
@@ -28,20 +28,56 @@ const {
 } = Astro.props;
 
 const pageTitle = title ? `${title} | ${SITE_NAME}` : SITE_NAME;
+const isHomepage = Astro.url.pathname === "/";
+
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": `${SITE_URL}/#matias`,
+  name: "Matías Tagliero",
+  jobTitle: "Abogado",
+  alumniOf: "Universidad Nacional de Córdoba",
+  email: "hola@matiastagliero.com",
+  telephone: "+5493513884467",
+  worksFor: { "@id": `${SITE_URL}/#legalservice` },
+};
 
 const legalServiceSchema = {
   "@context": "https://schema.org",
-  "@type": "LegalService",
+  "@type": ["LegalService", "LocalBusiness"],
+  "@id": `${SITE_URL}/#legalservice`,
   name: SITE_NAME,
   url: SITE_URL,
   telephone: "+5493513884467",
+  email: "hola@matiastagliero.com",
+  image: `${SITE_URL}/profile-pic.png`,
   address: {
     "@type": "PostalAddress",
-    addressLocality: "Córdoba",
+    streetAddress: "Saavedra 365",
+    addressLocality: "General Deheza",
+    addressRegion: "Córdoba",
     addressCountry: "AR",
   },
   areaServed: "Argentina",
+  knowsAbout: [
+    "Derecho Civil",
+    "Derecho Penal",
+    "Derecho Laboral",
+    "Derecho Familiar",
+    "Derecho Inmobiliario",
+    "Sucesiones",
+    "Jubilaciones",
+  ],
   description: DEFAULT_DESCRIPTION,
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": `${SITE_URL}/#website`,
+  url: SITE_URL,
+  name: SITE_NAME,
+  inLanguage: "es-AR",
 };
 ---
 
@@ -54,9 +90,10 @@ const legalServiceSchema = {
     <!-- Primary SEO -->
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
+    <meta name="author" content="Matías Tagliero" />
     <meta
       name="keywords"
-      content="abogado, Matías Tagliero, MP 12345, derecho civil, derecho penal, derecho laboral, derecho familiar, asesoría legal, representación judicial, consultoría jurídica, contratos, litigios, abogado en Argentina"
+      content="abogado, Matías Tagliero, matrícula 2-2050, derecho civil, derecho penal, derecho laboral, derecho familiar, derecho inmobiliario, sucesiones, jubilaciones, asesoría legal, representación judicial, consultoría jurídica, contratos, litigios, General Deheza, Córdoba, Argentina"
     />
     <meta name="robots" content={noindex ? "noindex,nofollow" : "index,follow"} />
     <link rel="canonical" href={canonical} />
@@ -101,8 +138,12 @@ const legalServiceSchema = {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
 
-    <!-- Schema.org: LegalService -->
+    <!-- Schema.org: LegalService + Person -->
     <script is:inline type="application/ld+json" set:html={JSON.stringify(legalServiceSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+    {isHomepage && (
+      <script is:inline type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+    )}
 
     <!-- Additional head content injected by pages (e.g. Article schema) -->
     <slot name="head" />
